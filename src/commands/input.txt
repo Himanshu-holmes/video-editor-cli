@@ -1,2 +1,2 @@
-file 'C:/Users/himan/my workspace/video-editor-cli/output/clip.mkv'
-file 'C:/Users/himan/my workspace/video-editor-cli/output/new.mkv'
+file '/Users/blank/Documents/Developers/Personal/video-editor-cli/videos/true_love.mp4'
+file '/Users/blank/Documents/Developers/Personal/video-editor-cli/videos/fake_love.mp4'

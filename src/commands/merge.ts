@@ -43,9 +43,10 @@ export const mergeVideos = async (videos: string[], output: string) => {
       // Create input list file
       const fileList = path.join(__dirname, "input.txt");
       writeFileSync(fileList, videos.map((v) => `file '${v}'`).join("\n"));
+      console.log(`output file`,output)
 
       // Merge using direct concatenation
-      const concatCommand = `ffmpeg -f concat -safe 0 -i "${fileList}" -c copy "${output}"`;
+      const concatCommand = `ffmpeg -f concat -safe 0 -i "${fileList}" -c copy "${output+"/idk"+Math.random()}".mp4`;
       await runCommand(concatCommand);
     } else {
       console.log("⚠️ Videos have different properties. Re-encoding is required.");

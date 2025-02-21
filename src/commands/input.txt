@@ -1,0 +1,2 @@
+file 'C:/Users/himan/my workspace/video-editor-cli/output/clip.mkv'
+file 'C:/Users/himan/my workspace/video-editor-cli/output/new.mkv'

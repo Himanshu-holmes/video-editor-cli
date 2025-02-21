@@ -4,6 +4,7 @@
   "bin": {
     "vdcli": "./bin/cli.js"
   },
+  "type": "module",
   "main": "index.js",
   "directories": {
     "test": "tests"

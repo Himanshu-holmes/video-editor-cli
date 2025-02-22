@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from "commander";
-import { sayHello } from "./commands/helloCommand";
+import { createFoldersIfNotExist, sayHello } from "./commands/helloCommand";
 import { trim } from "./commands/trim";
 import { execSync } from "child_process";
 
@@ -11,7 +11,7 @@ import { outputPath, videoPath } from "./constants";
 program.version("1.0.0").description("My TypeScript CLI");
 
 program.command("vde").description("Say hello")
-// .action(sayHello);
+.action(createFoldersIfNotExist);
 program.option(
   "-t, --trim <values...>",
   "Trim a video from start time for a given duration"

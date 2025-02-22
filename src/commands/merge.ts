@@ -1,7 +1,10 @@
 import { writeFileSync } from "fs";
 import path from "path";
 import { runCommand } from "../utils/helper";
-
+import { randomUUID } from "crypto";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Function to get video information
@@ -36,7 +39,8 @@ export const mergeVideos = async (videos: string[], output: string) => {
         info.resolution === firstVideo.resolution &&
         info.frameRate === firstVideo.frameRate
     );
-
+let outputFileName = `${randomUUID()}.mp4`
+let outputFilePath = path.join(output,outputFileName)
     if (allSameFormat) {
       console.log("✅ Videos are compatible. Using fast merging (no re-encoding).");
 
@@ -45,7 +49,7 @@ export const mergeVideos = async (videos: string[], output: string) => {
       writeFileSync(fileList, videos.map((v) => `file '${v}'`).join("\n"));
 
       // Merge using direct concatenation
-      const concatCommand = `ffmpeg -f concat -safe 0 -i "${fileList}" -c copy "${output}"`;
+      const concatCommand = `ffmpeg -f concat -safe 0 -i "${fileList}" -c copy "${outputFilePath}"`;
       await runCommand(concatCommand);
     } else {
       console.log("⚠️ Videos have different properties. Re-encoding is required.");
@@ -56,11 +60,11 @@ export const mergeVideos = async (videos: string[], output: string) => {
         .map((_, index) => `[${index}:v:0][${index}:a:0]`)
         .join("") + `concat=n=${videos.length}:v=1:a=1[outv][outa]`;
 
-      const encodeCommand = `ffmpeg ${inputFiles} -filter_complex "${filterComplex}" -map "[outv]" -map "[outa]" "${output}"`;
+      const encodeCommand = `ffmpeg ${inputFiles} -filter_complex "${filterComplex}" -map "[outv]" -map "[outa]" "${outputFilePath}"`;
       await runCommand(encodeCommand);
     }
 
-    console.log(`🎉 Merging complete! Output file: ${output}`);
+    console.log(`🎉 Merging complete! Output file: ${outputFilePath}`);
   } catch (error) {
     console.error("❌ Error merging videos:", error);
   }

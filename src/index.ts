@@ -6,7 +6,7 @@ import { trim } from "./commands/trim";
 import { execSync } from "child_process";
 
 import { mergeVideos } from "./commands/merge";
-import { outputPath, videoPath } from "./constants";
+import { outputFolder, videoFolder } from "./constants";
 
 program.version("1.0.0").description("My TypeScript CLI");
 
@@ -26,16 +26,16 @@ console.log("trim optinssssss",option.trim,option.filename)
 if (option.trim && option.filename) {
   
   const filename = option.filename
-  trim(option.trim,repoPath+videoPath+filename,repoPath+outputPath);
+  trim(option.trim,repoPath+videoFolder+filename,repoPath+outputFolder);
 }
 if(option.merge){
    if(option.merge.length < 2){
     console.error("Please provide atleast two videos ")
    }
-   const videofilePaths = option.merge.map((pt:string)=> repoPath+videoPath+pt)
+   const videofilePaths = option.merge.map((pt:string)=> repoPath+videoFolder+pt)
    console.log("filepaths",videofilePaths)
    console.log("repo path",repoPath)
-   mergeVideos(videofilePaths,repoPath+outputPath);
+   mergeVideos(videofilePaths,repoPath+outputFolder);
 }
 
 

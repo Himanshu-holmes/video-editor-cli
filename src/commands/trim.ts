@@ -17,9 +17,8 @@ export async function trim(
   const start = timeline[0];
   const end = timeline[1];
 
-  const repoPath = execSync("git rev-parse --show-toplevel").toString().trim();
 
-  console.log("Repo Path:", repoPath);
+
 
   const uuid = randomUUID();
   const ffmpegCommand = `ffmpeg -i "${videoPath}" -ss ${start} -t ${end} -async 1 "${outputPath}${uuid}.mp4"`;

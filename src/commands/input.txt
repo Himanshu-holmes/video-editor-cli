@@ -1,2 +1,2 @@
+file 'C:/Users/himan/my workspace/video-editor-cli/videos/Sanam.Teri.Kasam.2016.1080p.Hindi.BluRay.5.1.ESub.x264-HDHub4u.Tv.mkv'
 file 'C:/Users/himan/my workspace/video-editor-cli/videos/clip.mkv'
-file 'C:/Users/himan/my workspace/video-editor-cli/videos/merged_output.mp4'
